@@ -1,0 +1,36 @@
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+
+#define INF INT_MAX
+
+// Structure to represent a weighted edge in the graph
+typedef struct {
+    int u;
+    int v;
+    int w;
+} Edge;
+
+// Recursive helper function to print the path from source to current vertex
+void printPath(int parent[], int v) {
+    if (parent[v] == -1) {
+        printf("%d", v);
+        return;
+    }
+    printPath(parent, parent[v]);
+    printf("->%d", v);
+}
+
+int main() {
+    int V, E;
+    if (scanf("%d %d", &V, &E) != 2) return 0;
+
+    // Dynamically allocate memory for edges
+    Edge* edges = (Edge*)malloc(E * sizeof(Edge));
+    for (int i = 0; i < E; i++) {
+        scanf("%d %d %d", &edges[i].u, &edges[i].v, &edges[i].w);
+    }
+
+    int src;
