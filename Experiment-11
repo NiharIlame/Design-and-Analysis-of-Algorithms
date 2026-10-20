@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Helper function to find the maximum of two integers
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int main() {
+    int N, W;
+    
+    // Read the number of items
+    if (scanf("%d", &N) != 1) return 0;
+    
+    int* values = (int*)malloc(N * sizeof(int));
+    int* weights = (int*)malloc(N * sizeof(int));
+    
+    // Read values of the items
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &values[i]);
+    }
+    
+    // Read weights of the items
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &weights[i]);
+    }
+    
+    // Read the maximum capacity of the knapsack
+    scanf("%d", &W);
+    
+    // dp[w] will store the maximum value achievable with capacity w
+    // Initialized to 0 by calloc
+    int* dp = (int*)calloc(W + 1, sizeof(int));
+    
+    // Build the DP array in a bottom-up manner
+    for (int i = 0; i < N; i++) {
